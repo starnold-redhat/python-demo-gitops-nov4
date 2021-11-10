@@ -111,9 +111,9 @@ spec:
     taskRef:
       kind: Task
       name: update-image-tag
-  workspaces:
-  - name: source
-    workspace: shared-data
+    workspaces:
+    - name: source
+      workspace: shared-data
   workspaces:
   - description: This workspace will receive the cloned git repo.
     name: shared-data
