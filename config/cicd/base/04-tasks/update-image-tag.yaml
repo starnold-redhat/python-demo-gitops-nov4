@@ -44,35 +44,35 @@ spec:
 
       cd /workspace/source/
 
-      git config --global user.email "${GIT_USER_EMAIL}"
+      git config --global user.email $(params.GIT_USER_EMAIL)
 
-      git config --global user.name "${GIT_USER_NAME}"
+      git config --global user.name $(params.GIT_USER_NAME)
 
       mkdir localgitops
 
       cd localgitops
 
-      echo "gittoken" + ${GITHOSTACCESSTOKEN}
+      echo "gittoken" + $(params.GITHOSTACCESSTOKEN)
 
-      echo "git repo" + ${OPS_GIT_REPO}
+      echo "git repo" + $(params.OPS_GIT_REPO)
 
-      echo "src git name" + ${SRC_GIT_NAME}
+      echo "src git name" + $(params.SRC_GIT_NAME)
 
-      echo "git command: " +   "https://${GITHOSTACCESSTOKEN}@github.com/${OPS_GIT_REPO}"
+      echo "git command: " +   https://$(params.GITHOSTACCESSTOKEN)@github.com/$(params.OPS_GIT_REPO)
       
-      git clone https://${GITHOSTACCESSTOKEN}@github.com/${OPS_GIT_REPO}
+      git clone https://$(params.GITHOSTACCESSTOKEN)@github.com/$(params.OPS_GIT_REPO)
 
       # set image for dev deployment
 
       ls
 
-      cd /workspace/source/localgitops/environments/dev/apps/${SRC_GIT_NAME}/services/python-devfile/base/config
+      cd /workspace/source/localgitops/environments/dev/apps/$(params.SRC_GIT_NAME)/services/python-devfile/base/config
 
       kustomize edit set image $(params.IMAGE)
 
       # set image for stage deployment
 
-      cd /workspace/source/localgitops/gitops/environments/stage/apps/${SRC_GIT_NAME}/services/python-devfile/base/config
+      cd /workspace/source/localgitops/gitops/environments/stage/apps/$(params.SRC_GIT_NAME)/services/python-devfile/base/config
 
       kustomize edit set image $(params.IMAGE)
 
