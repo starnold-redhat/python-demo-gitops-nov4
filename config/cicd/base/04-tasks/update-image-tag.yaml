@@ -52,11 +52,21 @@ spec:
 
       cd localgitops
 
-      git clone "https://${GITHOSTACCESSTOKEN}@github.com/${OPS_GIT_REPO}"
+      echo "gittoken" + ${GITHOSTACCESSTOKEN}
+
+      echo "git repo" + ${OPS_GIT_REPO}
+
+      echo "src git name" + ${SRC_GIT_NAME}
+
+      echo "git command: " +   "https://${GITHOSTACCESSTOKEN}@github.com/${OPS_GIT_REPO}"
+      
+      git clone https://${GITHOSTACCESSTOKEN}@github.com/${OPS_GIT_REPO}
 
       # set image for dev deployment
 
-      cd /workspace/source/localgitops/gitops/environments/dev/apps/${SRC_GIT_NAME}/services/python-devfile/base/config
+      ls
+
+      cd /workspace/source/localgitops/environments/dev/apps/${SRC_GIT_NAME}/services/python-devfile/base/config
 
       kustomize edit set image $(params.IMAGE)
 
